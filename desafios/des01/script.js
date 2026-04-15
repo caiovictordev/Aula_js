@@ -1,50 +1,28 @@
+let fases = +prompt("Escreva o número de fases jogadas")
 let pontuacao = 0
-let fases = 0
-let p1, p2, p3, p4, p5
+let pontuacaoTotal = 0
+let media = 0
+let contador = 0
 
-for(let qtdfases = 1; qtdfases <=5; qtdfases++){
+for(let cont = 1; cont <= fases; cont++){
 
-    alert(`
-        Você está na fase ${qtdfases}
-        clique para ir para a próxima fase.    
-    `)
-    
-    if(qtdfases == 1){
-        p1 = Math.floor(Math.random() * 200) + 1
-        alert(`Você ganhou ${p1} pontos nesta fase`)
+    pontuacao = +prompt(`Digite a sua pontuação da fase ${cont}.`)
 
-    }else if(qtdfases == 2){
-        p2 = Math.floor(Math.random() * 200) + 1
-        alert(`Você ganhou ${p2} pontos nesta fase`)
+    pontuacaoTotal += pontuacao
 
-    }else if(qtdfases == 3){
-        p3 = Math.floor(Math.random() * 200) + 1
-        alert(`Você ganhou ${p3} pontos nesta fase`)
+    media = pontuacaoTotal / fases
 
-    }else if(qtdfases == 4){
-        p4 = Math.floor(Math.random() * 200) + 1
-        alert(`Você ganhou ${p4} pontos nesta fase`)
-
-    }else if(qtdfases == 5){
-        p5 = Math.floor(Math.random() * 200) + 1
-        alert(`Você ganhou ${p5} pontos nesta fase`)
+    console.log(pontuacao)
+    if(pontuacao > 100){
+        contador ++
     }
-
 }
 
-let soma = (p1 + p2 + p3 + p4 + p5) / 5
-
 alert(`
-    Parabéns, você conseguiu ganhou!!
-    -------------Estatísticas-------------
-    Pontos por fase:
+    --------------Estatísticas---------------
+    Fases Jogadas : ${fases}
+    Pontuação Total: ${pontuacaoTotal}
+    Media de pontos obtidos: ${media}
+    Pontuações acima de 100: ${contador} 
 
-    Fase 1: ${p1}
-    Fase 2: ${p2}
-    Fase 3: ${p3}
-    Fase 4: ${p4}
-    Fase 5: ${p5}
-
-    Fases acima de 100 pontos: ${fases}
-    Media total de pontos (${soma})
 `)
