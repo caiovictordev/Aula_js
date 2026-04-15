@@ -1,4 +1,4 @@
-let produtos = prompt("Quantos produtos vai levar?")
+let produtos = +prompt("Quantos produtos vai levar?")
 let nome 
 let preco = 0
 let quantidadeProdutos = 0
