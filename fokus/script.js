@@ -20,6 +20,17 @@ function alterarConteudos(contexto, botaoClicado){
 
     //Atualizando o data-contexto
     html.dataset.contexto = contexto
+
+    if(contexto == "foco"){// Codição para modificar o fundo
+        titulos.innerHTML = 'Otimize sua produtividade, <strong style= "font-weight: bold;"> mergulhe no que importa.</strong>'
+        banner.src = 'imagens/foco.png'
+    }else if(contexto == "descanso-curto"){
+        titulos.innerHTML = 'Simplifique o caminho, <strong style = "font-weight: bold;">avance com eficiência</strong>'
+        banner.src = 'imagens/descanso-curto.png'
+    }else if(contexto == "descanso-longo"){
+        titulos.innerHTML = 'Direcione seu tempo ao que<strong style = "font-weight: bold;"> realmente faz diferença.</strong>'
+        banner.src = 'imagens/descanso-longo.png'
+    }
 }
 /* let banner = document.querySelector('.app__image')
 let titulos = document.querySelector('.app__title')
