@@ -1,4 +1,27 @@
-let banner = document.querySelector('.app__image')
+const banner = document.querySelector('.app__image')
+const titulos = document.querySelector('.app__title')
+const html = document.documentElement
+const botoes = document.querySelectorAll('.app__card-button[data-contexto]')
+
+botoes.forEach(itemBotoes =>  {
+    itemBotoes.addEventListener('click', ()=>{
+        let contexto = itemBotoes.dataset.contexto
+        alterarConteudos(contexto, itemBotoes)// Chamando a função das ações
+    })
+})
+
+//Função que vai executar as ações do evento de click dos botoes
+function alterarConteudos(contexto, botaoClicado){
+    //Removendo classe ativa dos elementos
+    botoes.forEach(itemBotoes => itemBotoes.classList.remove('active'))
+
+    //Adicionando a classe ativa dos elementos
+    botaoClicado.classList.add('active')
+
+    //Atualizando o data-contexto
+    html.dataset.contexto = contexto
+}
+/* let banner = document.querySelector('.app__image')
 let titulos = document.querySelector('.app__title')
 let body = document.querySelector('body')
 let foco = document.querySelector('.active')
@@ -31,4 +54,4 @@ function pausaLonga(){
     foco.classList.remove('active')
     pausaC.classList.remove('active')
     pausaL.classList.add('active')
-}
+} */
