@@ -45,6 +45,127 @@ function alterarConteudos(contexto, botaoClicado){
         banner.src = 'imagens/descanso-longo.png'
     } */
 }
+// Inicio codificação Temporizador
+const exibirTimerApp = document.querySelector('#timer')
+const btnStart = document.querySelector('#start-pause')
+const btnPause = document.querySelector('.app__card-primary-butto-icon')
+
+//Variável de referencia para guardar o timer
+let tempoDecorrido = 10
+
+function mostrarTimer(){
+    const tempo = new Date(tempoDecorrido * 1000)
+    const tempoFormatado = tempo.toLocaleTimeString('pt-br', {minute: '2-digit', second: '2-digit'})
+    exibirTimerApp.innerHTML = `${tempoFormatado}`
+}
+
+mostrarTimer()
+
+btnStart.addEventListener('click', iniciarTimer)
+
+
+function decrementarTimer(){
+    const som = new Audio ('sons/beep.mp3')
+    
+    if(tempoDecorrido == 0){
+        alert("Tempo Finalizado!")
+        som.play()
+        pararTimer()
+        return
+    }
+    tempoDecorrido -= 1
+    mostrarTimer()
+}
+let idTimer
+let rodando = false 
+function iniciarTimer(){
+    idTimer = setInterval(decrementarTimer, 1000)
+    rodando = true
+    btnStart.innerHTML = "Pause"
+}
+function pararTimer(){
+    clearInterval(idTimer)
+    rodando = false
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* let banner = document.querySelector('.app__image')
 let titulos = document.querySelector('.app__title')
 let body = document.querySelector('body')
