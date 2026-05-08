@@ -140,6 +140,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .app__card-primary-button-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -230,6 +231,32 @@ h1, h2, h3, h4, h5, h6 {
     visibility: hidden;
 }
 
+/* Ideia do Modal */
+.modal {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+        top: 0;
+}
+
+.modal__conteudo {
+    width: 300px;
+    height: 200px;
+    background-color: #eee;
+    display: flex;
+    justify-content: flex-end;
+}
+.modal__exit{
+    
+    background-color: #ccc;
+    padding: 5px;
+    height: 30px;
+
+}
 /* fim - toggle */
 
 /* Para Tablets */

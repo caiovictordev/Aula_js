@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="styles.css">
 
     <!--Passando JavaScript-->
-    <script src="script.js" defer></script>
+    <script type="module" src="script/script.js" defer></script>
+
 </head>
 
 <body>
@@ -69,9 +70,19 @@
                         <img class="app__card-primary-butto-icon" src="imagens/play_arrow.png" alt="">
                         <span>Começar</span>
                     </button>
+                    <button id="start-pause" class="app__card-primary-button">
+                        <img class="app__card-primary-butto-icon" alt="">
+                        <span>Resetar</span>
+                    </button>
                 </div>
             </div>
         </section>
+
+        <div class="modal">
+            <div class="modal__conteudo">
+                <button class="modal__exit">X</button>
+            </div>
+        </div>
 
         <footer class="app__footer">
             <p class="app__footer-text">
