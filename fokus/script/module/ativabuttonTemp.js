@@ -5,7 +5,7 @@ export default function initButtonTemp(){
     const botoes = document.querySelectorAll('.app__card-button[data-contexto]')
     const exit_modal = document.querySelector('.modal__exit')
     const modal = document.querySelector('.modal')
-
+    const resetar = document.querySelector("#start-reset")
 
     botoes.forEach(itemBotoes =>  {
         itemBotoes.addEventListener('click', ()=>{
@@ -27,10 +27,38 @@ export default function initButtonTemp(){
 
         banner.src= `imagens/${contexto}.png`
 
+        resetar.addEventListener('click', ()=>{
+            switch(contexto){
+                case "foco":
+                tempoDecorrido = 15
+                mostrarTimer()
+                pararTimer()
+                imageBotao.src = 'imagens/play_arrow.png'
+                btnInicioPause.innerText = 'Iniciar'
+                break;
+
+                case "descanso-curto":
+                tempoDecorrido = 5
+                mostrarTimer()
+                pararTimer()
+                imageBotao.src = 'imagens/play_arrow.png'
+                btnInicioPause.innerText = 'Iniciar'
+                break;
+
+                case "descanso-longo":
+                tempoDecorrido = 10
+                mostrarTimer()
+                pararTimer()
+                imageBotao.src = 'imagens/play_arrow.png'
+                btnInicioPause.innerText = 'Iniciar'
+                break;
+            }
+        })
+
         switch (contexto) {
             case "foco":
                 titulos.innerHTML = 'Otimize sua produtividade, <strong style= "font-weight: bold;"> mergulhe no que importa.</strong>'
-                tempoDecorrido = 20
+                tempoDecorrido = 15
                 mostrarTimer()
                 break;
             case "descanso-curto":
@@ -40,28 +68,16 @@ export default function initButtonTemp(){
                 break;
             case "descanso-longo":
                 titulos.innerHTML = 'Direcione seu tempo ao que<strong style = "font-weight: bold;"> realmente faz diferença.</strong>'
-                tempoDecorrido = 15
+                tempoDecorrido = 10
                 mostrarTimer()
                 break;
         }
-        /*if(contexto == "foco"){// Codição para modificar o fundo
-            titulos.innerHTML = 'Otimize sua produtividade, <strong style= "font-weight: bold;"> mergulhe no que importa.</strong>'
-            banner.src = 'imagens/foco.png'
-        }else if(contexto == "descanso-curto"){
-            titulos.innerHTML = 'Simplifique o caminho, <strong style = "font-weight: bold;">avance com eficiência</strong>'
-            banner.src = 'imagens/descanso-curto.png'
-        }else if(contexto == "descanso-longo"){
-            titulos.innerHTML = 'Direcione seu tempo ao que<strong style = "font-weight: bold;"> realmente faz diferença.</strong>'
-            banner.src = 'imagens/descanso-longo.png'
-        } */
     }
     // Inicio codificação Temporizador
     const exibirTimerApp = document.querySelector('#timer')
     const btnStart = document.querySelector('#start-pause')
-    const btnPause = document.querySelector('.app__card-primary-butto-icon')
-
     //Variável de referencia para guardar o timer
-    let tempoDecorrido = 0
+    let tempoDecorrido = 1500
 
     function mostrarTimer(){
         const tempo = new Date(tempoDecorrido * 1000)
@@ -70,59 +86,57 @@ export default function initButtonTemp(){
     }
     mostrarTimer()
 
-    btnStart.addEventListener('click', iniciarTimer)
 
-    function iniciarPausaTimer(){
-        const audioIniciar = new Audio('./sons/play.wav')
-        const audioPausar = new Audio('./sons/pause.mp3')
-        if(rodando){
-            audioIniciar.play()
-        }
-    }
+
+    btnStart.addEventListener('click', iniciarPausaTimer)
+    //Variável do aúdio beep
+    const som = new Audio ('sons/beep.mp3')
 
     function decrementarTimer(){
-        const som = new Audio ('sons/beep.mp3')
-        
-        if(tempoDecorrido == 0){
-            alert("Tempo Finalizado!")
+    
+        if(tempoDecorrido <= 0){
             som.play()
+            /* setTimeout(()=> alert('tempoDecorrido!'), 100) */
             pararTimer()
+            modal.style.display ="flex"
             return
         }
-        tempoDecorrido -= 1,0
+        tempoDecorrido -= 1
         mostrarTimer()
     }
+
     let idTimer
     let rodando = false
 
-    function iniciarTimer(){
-        if(rodando){
+    const btnInicioPause = document.querySelector('.app__card-primary-button span')
+    const imageBotao = document.querySelector('.app__card-primary-butto-icon')
+
+    function iniciarPausaTimer(){
+        const audioIniciar = new Audio('sons/play.wav')
+        const audioPausar = new Audio('sons/pause.mp3')
+
+        if (rodando) {
+            imageBotao.src = 'imagens/play_arrow.png'
+            btnInicioPause.innerText = 'Iniciar'
+            audioPausar.play()
             pararTimer()
             return
         }
+        imageBotao.src= 'imagens/pause.png'
+        btnInicioPause.innerText = 'Pausar'
+        audioIniciar.play()
         idTimer = setInterval(decrementarTimer, 1000)
         rodando = true
-        btnStart.innerHTML = `
-        <img src="imagens/play_arrow.png">
-        <span>Começar</span>`
     }
-
+ 
     function pararTimer(){
         clearInterval(idTimer)
         rodando = false
-        btnStart.innerHTML = `
-        <img src="imagens/pause.png">
-        <span>Pausa</span>`
     }
 
     exit_modal.addEventListener('click', ()=>{
-        modal.style.display = 'none'
+        modal.style.display = "none"
+        som.pause()
     })
-
-    modal.style.display = 'none'
-
-    if(tempoDecorrido == 0){
-        modal.style.display = "block" 
-    }
 
 }
