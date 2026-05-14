@@ -12,10 +12,10 @@
 
 Dica: lembrando que é possível acessar o texto de um input através da propriedade value.
  */
-const div = document.getElementById('box_container')
-const input = document.createElement('input')
+const div = document.getElementById('box-container')
 
 const jogadores = []
+
 /* for(let i = 0; i < 5; i++){
     jogadores[i] = prompt('...')
 }
@@ -23,9 +23,34 @@ console.log(jogadores) (Teste de Array) */
 //objeto jogador
 
 //Escalar Jogador
+const nameJogador = document.createElement('input')
+const numberJogador = document.createElement('input')
+const positionJogador = document.createElement('input')
 const buttonEscalar = document.getElementById('escalarJogador')
 
+
 buttonEscalar.addEventListener('click', ()=>{
-    div.appendChild(input)
-    console.log(input)
+    div.append(nameJogador, numberJogador, positionJogador, buttonConfirm)
+    nameJogador.setAttribute('placeholder', 'Digite o nome do jogador')
+    numberJogador.setAttribute('placeholder', 'Digite o número do jogador')
+    positionJogador.setAttribute('placeholder', 'Digite a posição do Jogador')
+
+    buttonConfirm.innerText = 'Confirmar jogador'
+
+})
+
+//Confirmar seleção
+const buttonConfirm = document.createElement('button')
+const span = document.createElement('span')
+
+buttonConfirm.addEventListener('click', ()=>{
+    let time = {
+        jogador : nameJogador.value,
+        camisa : numberJogador.value,
+        posicao: positionJogador.value
+    }
+
+    div.appendChild(span)
+    span.innerHTML =  JSON.stringify(time)
+
 })
