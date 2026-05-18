@@ -3,12 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
-#telaPrincipal h1{
-    text-align: center;
+
+.logo{
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 .container-box{
     width: 100%;
-    border: solid 2px black;
+    max-width: 1300px;
+    margin: 0 auto;
 
 }
 .container-box > h2{
@@ -31,6 +35,26 @@
 .col{
     margin: 5px;
     padding: 10px;
-    border: solid 2px green;
     border-radius: 10px;
+    border: solid 1px;
+}
+#remover{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    border-color: transparent;
+    cursor: pointer;
+}
+#confirmar{
+    text-align: end;
+}
+.containerzao{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#confirmar{
+    padding: 10px;
 }
